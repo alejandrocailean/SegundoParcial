@@ -1,0 +1,25 @@
+<H3>REGISTRO</H3>
+<div class="form-group">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <label>
+            TIPO DE USUARIO:
+              
+          </label>
+          <p>
+              <select  class="form-control" formControlName="user" required>
+                  <option [value]="item" *ngFor="let item of users">{{item}}</option>
+              </select>
+          </p>
+         
+
+        <label class="label" >MAIL</label><br>
+        <input type="email" formControlName='email' class="form-control" email required [(ngModel)]="usuario"><br><br>
+    
+        <label class="label" >CONTRASEÑA</label><br>
+        <input type="password" formControlName="password" class="form-control" required [(ngModel)]="password"><br><br>
+    
+        <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary">REGISTRAR</button>
+    
+    </form>
+</div>
+          

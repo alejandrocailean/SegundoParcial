@@ -1,0 +1,39 @@
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+    <label>
+      Animal:
+        
+    </label>
+    <p>
+        <select  class="form-control" formControlName="animal" required>
+            <option [value]="item" *ngFor="let item of animal">{{item}}</option>
+        </select>
+    </p>
+    <label>
+      Nombre:
+      <input type="text" class="form-control" formControlName="nombre" required required minlength='3'>
+    </label>
+
+    <label>
+        Raza:
+        <input type="text" class="form-control" formControlName="raza" required minlength='3'>
+    </label>
+
+    <label>
+        
+    Edad:
+    <input type="number" class="form-control" formControlName="edad" required min="1">
+    </label>
+
+    <label>
+        Dueño:
+        <input type="text" class="form-control" formControlName="duenio" required required minlength='3'>
+    </label>
+
+    <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary">Submit</button>
+  </form>
+
+  <p>
+    Form Status: {{ profileForm.status }}
+  </p>

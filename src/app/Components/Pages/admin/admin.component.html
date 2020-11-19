@@ -1,0 +1,106 @@
+
+<a > <button (click)='h_alta_admin=false; h_alta_alumno=true; h_alta_materia=true;' class="btn btn-secondary">REGISTRAR ADMINISTRADOR </button></a>
+<a > <button (click)='h_alta_materia=false; h_alta_alumno=true;h_alta_admin=true;' class="btn btn-secondary">REGISTRAR MATERIA </button></a>
+<a > <button (click)='h_alta_alumno=false;h_alta_admin=true;h_alta_materia=true;' class="btn btn-secondary">REGISTRAR ALUMNOS </button></a>
+
+<!-- alta de administradores -->
+<div [hidden]='h_alta_admin'>
+<H3>Dar de alta a un nuevo administrador</H3>
+
+    <form [formGroup]="profileForm" (ngSubmit)="altaAdmin()">
+        
+        <label class="label"> TIPO DE USUARIO:</label>          
+        <input type="text"class="form-control" formControlName='user' disabled>
+          
+
+        <label class="label" >MAIL</label><br>
+        <input type="email" formControlName='email' class="form-control" email required ><br><br>
+    
+        <label class="label" >CONTRASEÑA</label><br>
+        <input type="password" formControlName="password" class="form-control" required ><br><br>
+    
+        <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary">REGISTRAR ADMINISTRADOR</button>
+    </form>    
+</div>  
+
+<!-- alta de materias -->
+<div [hidden]='h_alta_materia'>
+    <H3>Dar de alta a una nueva materia</H3>
+    
+        <form [formGroup]="materiaForm" (ngSubmit)="altaMateria()">
+            
+            <label class="label"> NOMBRE</label>          
+            <input type="text"class="form-control" formControlName='nombre' required >
+              
+            <label class="label"> CUATRIMESTRE</label>          
+            <p>
+                <select  class="form-control" formControlName="cuatrimestre" required>
+                    <option>1 </option>
+                    <option>2</option>
+                </select>
+            </p>
+
+            <label class="label"> CUPO DE ALUMNOS</label>          
+            <input type="number"class="form-control" max="50" formControlName='cupo' required >
+
+            <label class="label"> AÑO</label>          
+            <input type="number"class="form-control" minlength='2' maxlength='4' formControlName='anio' required >
+
+            <label class="label"> PROFESOR </label>       
+            <p>
+                <select  class="form-control" formControlName="profesor" required>
+                    <option [value]="item" *ngFor="let item of listaProfesores">{{item.data.email}}</option>
+                </select>
+            </p>   
+            <!-- <input type="text"class="form-control" formControlName='profesor' > -->
+            
+        
+            <button type="submit" [disabled]="materiaForm.invalid" class="btn btn-primary">REGISTRAR MATERIA</button>
+        </form>    
+    </div> 
+
+
+<!-- Alta de alumnos en materias -->
+    <div [hidden]='h_alta_alumno'>
+        <H3>Dar de alta alumnos a materias</H3>
+        
+            <form [formGroup]="alumnoForm" (ngSubmit)="altaAlumno()">
+                               
+    
+                <label class="label"> MATERIAS </label>       
+                <p>
+                    <select  class="form-control" formControlName="materia" required>
+                        <option [value]="item" *ngFor="let item of listaMaterias">{{item.data.nombre}}</option>
+                    </select>
+                </p>   
+                
+                <!-- <label class="label"> PROFESOR </label>       
+                <p>
+                    <select  class="form-control" formControlName="profesor" required>
+                        <option [value]="item" *ngFor="let item of listaProfesores">{{item.data.email}}</option>
+                    </select>
+                </p> -->
+            
+                <button type="submit" [disabled]="alumnoForm.invalid" class="btn btn-primary">REGISTRAR MATERIA</button>
+            </form>    
+        </div> 
+    
+
+
+
+
+
+
+
+
+    <div hidden >
+        <app-profesor (profesores)='listaprofe($event)'></app-profesor>
+    </div>
+<div hidden>
+    <app-materias (materias)='listaMateria($event)'></app-materias>
+</div>
+
+
+
+
+

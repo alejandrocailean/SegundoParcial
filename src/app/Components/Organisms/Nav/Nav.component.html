@@ -1,0 +1,21 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-sm navbar-dark  static-top">
+  <div class="container">
+   
+
+    <a class="navbar-brand" routerLink='home'>
+          <img src="https://www.clipartmax.com/png/middle/274-2749182_home-icon-animated-gif.png" alt="HOME" style="width: 5rem;height: 3rem;">
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" routerLink='admin'  role="tab" >ADMIN</a>
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" routerLink='profe'  role="tab" >PROFE</a>
+  </div>
+  <div class="float-right">
+    <!-- <button class=" btn-sm btn-primary" routerLink='login' [hidden]='h_btn' >login</button>
+    <button class=" btn-sm btn-danger" routerLink='login' [hidden]='!h_btn' >Salir</button> -->
+    <button class="btn btn-info"><app-nombre-usuario></app-nombre-usuario></button>
+  </div>
+</nav>

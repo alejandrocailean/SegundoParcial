@@ -1,0 +1,68 @@
+<h1 class="text-muted text-center ">{{titulo}} </h1>
+
+<div class="panel-body">  
+  <Table class="table table-striped">
+      <thead>
+        <tr>                 
+          <th>Nombre</th>
+          <th>ANIMAL</th>         
+          <th>RAZA</th>
+          <th>EDAD</th>
+          <th>DUEÑO</th>           
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let item of listado ; index as i">
+          
+           <td>{{item.data.nombre}}</td>  
+           <td>{{item.data.animal}} </td> 
+           <td>{{item.data.raza}}</td> 
+           <td>{{item.data.edad}}</td>   
+           <td>{{item.data.duenio}}</td>        
+           <td><button (click)='modificar(i)'>MODIFICAR</button> </td> 
+          <td><button (click)='eliminar(i)'>ELIMINAR</button></td>
+         </tr>  
+      </tbody>
+    </Table> 
+</div>
+
+<div [hidden]='hid_mod'>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+    <label>
+      Animal:
+        
+    </label>
+    <p>
+        <select  class="form-control" formControlName="animal" required>
+            <option [value]="item" *ngFor="let item of animal">{{item}}</option>
+        </select>
+    </p>
+    <label>
+      Nombre:
+      <input type="text"  class="form-control"  formControlName="nombre" required required minlength='3'>
+    </label>
+
+    <label>
+        Raza:
+        <input type="text" class="form-control" formControlName="raza" required minlength='3'>
+    </label>
+
+    <label>
+        
+    Edad:
+    <input type="number" class="form-control" formControlName="edad" required min="1">
+    </label>
+
+    <label>
+        Dueño:
+        <input type="text" class="form-control" formControlName="duenio" required required minlength='3'>
+    </label>
+
+    <button type="submit" [disabled]="profileForm.invalid" class="btn btn-primary">GUARDAR CAMBIOS</button>
+  </form>
+
+  <p>
+    Form Status: {{ profileForm.status }}
+  </p>
+</div>
